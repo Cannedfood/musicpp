@@ -1,0 +1,9 @@
+/obj
+/bin
+
+.vscode/ipch
+
+Makefile
+*.make
+
+docs

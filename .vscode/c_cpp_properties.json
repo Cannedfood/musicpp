@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "defines": [],
+            "compilerPath": "/usr/bin/clang",
+			"intelliSenseMode": "clang-x64",
+			"includePath": [
+				"src",
+				"thirdparty/stx/src",
+				"thirdparty/nanovg/src",
+                "thirdparty/catch2/single_include",
+                "thirdparty/wg3/src"
+			]
+        }
+    ],
+    "version": 4
+}

@@ -1,0 +1,12 @@
+[submodule "thirdparty/nanovg"]
+	path = thirdparty/nanovg
+	url = https://github.com/memononen/nanovg.git
+[submodule "thirdparty/stx"]
+	path = thirdparty/stx
+	url = https://github.com/Cannedfood/stx.git
+[submodule "thirdparty/catch2"]
+	path = thirdparty/catch2
+	url = https://github.com/catchorg/Catch2.git
+[submodule "thirdparty/wg3"]
+	path = thirdparty/wg3
+	url = https://github.com/Cannedfood/wg3.git
