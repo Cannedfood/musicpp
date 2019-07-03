@@ -11,6 +11,12 @@ stx::shared<Widget> toolButtons() {
 	return result;
 }
 
+struct PrintPositions : wg::Event {
+	void onVisit(Widget& widget) const noexcept {
+		printf("%s %p: %f %f %f %f\n", typeid(widget).name(), &widget, WG_XY(widget.offset()), WG_WH(widget.size()));
+	}
+};
+
 int main(int argc, char const* argv[]) {
 	wg::Application app;
 	wg::Window window(app, "Hello world", 800, 600);
@@ -22,14 +28,14 @@ int main(int argc, char const* argv[]) {
 	auto editorLayout = wg::Grid({
 		{ 0,  20, 80 },
 		{ 5,   1,  1 },
-		{ 80,  2,  3 },
-		{ 15,  4,  4 },
+		{ 75,  2,  3 },
+		{ 20,  4,  4 },
 	});
 	window.add(editorLayout);
 
 	editorLayout.add(*toolButtons(), 2);
 
-	wg::Raster list(4, 4);
+	wg::Raster list(4, 2);
 	for(size_t i = 0; i < 5; i++) {
 		list.add(*stx::make_shared<Bar>());
 	}
@@ -38,5 +44,6 @@ int main(int argc, char const* argv[]) {
 	editorLayout.add(*stx::make_shared<GuitarNeck>(), 4);
 
 	app.run();
+
 	return 0;
 }

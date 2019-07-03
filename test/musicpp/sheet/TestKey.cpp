@@ -12,7 +12,6 @@ void print(KeySignature const& key) {
 		printf("%c", !s?' ':key.accidental == FLAT?'b':'#');
 	}
 	printf("\n");
-
 }
 
 TEST_CASE("Key") {
