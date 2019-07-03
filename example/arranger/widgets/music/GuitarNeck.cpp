@@ -12,7 +12,7 @@ GuitarNeck::GuitarNeck(guitar::Tuning tuning, guitar::Chord chord, int bars) noe
 	}
 }
 
-Constraint GuitarNeck::measure(Canvas &canvas, Constraint impose) noexcept {
+Constraint GuitarNeck::measure(Canvas &canvas, Constraint const& impose) noexcept {
 	return Constraint::exactly(barSize * Size(bars, tuning.numStrings())).clamp(impose);
 }
 void GuitarNeck::paint(Canvas &canvas) noexcept {
@@ -28,7 +28,7 @@ void GuitarNeck::paint(Canvas &canvas) noexcept {
 		canvas.stroke(LightGray);
 
 		canvas
-		.font("default", barSize.h / 2)
+		.font("sans", barSize.h / 2)
 		.fontAlign(NVG_ALIGN_CENTER, NVG_ALIGN_BOTTOM)
 		.fillColor(primary)
 		.text(std::to_string(bar).c_str(), {_notePosition(bar), 0});

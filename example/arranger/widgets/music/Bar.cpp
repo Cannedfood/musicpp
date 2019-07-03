@@ -2,7 +2,7 @@
 
 namespace music::arranger {
 
-Constraint Bar::measure(Canvas &canvas, Constraint impose) noexcept {
+Constraint Bar::measure(Canvas &canvas, Constraint const& impose) noexcept {
 	float height = preferredNoteHeight * (staff.height() + paddingLines);
 	return impose.with_min({ height, height }).with_pref({ height, height * 1.5f }).with_max({ Inf, Inf }).clamp(impose);
 }

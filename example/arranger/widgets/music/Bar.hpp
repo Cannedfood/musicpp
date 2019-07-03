@@ -15,7 +15,7 @@ public:
 	constexpr static float paddingLines = 8;
 	constexpr static float preferredNoteHeight = 8;
 
-	Constraint measure(Canvas& canvas, Constraint impose) noexcept override;
+	Constraint measure(Canvas& canvas, Constraint const& impose) noexcept override;
 	void       paint(Canvas& canvas) noexcept override;
 
 	void drawNote(Canvas& canvas, float x, Note note) const noexcept;

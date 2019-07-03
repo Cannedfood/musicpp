@@ -24,7 +24,7 @@ public:
 
 	GuitarNeck(guitar::Tuning tuning = guitar::Standard, guitar::Chord chord = {}, int bars = -1) noexcept;
 
-	Constraint measure(Canvas &canvas, Constraint impose) noexcept override;
+	Constraint measure(Canvas &canvas, Constraint const& impose) noexcept override;
 
 	void paint(Canvas &canvas) noexcept override;
 

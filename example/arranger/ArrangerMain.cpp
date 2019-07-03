@@ -21,9 +21,7 @@ int main(int argc, char const* argv[]) {
 	wg::Application app;
 	wg::Window window(app, "Hello world", 800, 600);
 
-	window.canvas()
-		.loadFont("bold",    "/usr/share/fonts/TTF/DejaVuSans-Bold.ttf")
-		.loadFont("default", "/usr/share/fonts/TTF/DejaVuSans.ttf");
+	app.useDefaultRessources();
 
 	auto editorLayout = wg::Grid({
 		{ 0,  20, 80 },
