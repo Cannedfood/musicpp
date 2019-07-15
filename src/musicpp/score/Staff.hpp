@@ -6,7 +6,7 @@
 
 #include <algorithm>
 
-namespace music::sheet {
+namespace music::score {
 
 enum StaffName {
 	F_Clef, BassClef = F_Clef,
@@ -71,4 +71,4 @@ struct Staff {
 	}
 };
 
-} // namespace music::sheet
+} // namespace music::score

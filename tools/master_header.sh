@@ -20,4 +20,4 @@ genHeader() {
 
 genHeader 'src/musicpp.hpp'        'src/musicpp/'        'musicpp/'
 genHeader 'src/musicpp/Guitar.hpp' 'src/musicpp/guitar/' 'guitar/'
-genHeader 'src/musicpp/Sheet.hpp'  'src/musicpp/sheet/'  'sheet/'
+genHeader 'src/musicpp/Score.hpp'  'src/musicpp/score/'  'score/'

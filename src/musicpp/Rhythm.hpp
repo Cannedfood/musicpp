@@ -47,6 +47,8 @@ struct Duration {
 	constexpr bool operator< (Duration const& other) const { return value <  other.value; }
 };
 
+using TimePoint = Duration;
+
 constexpr inline Duration operator*(Duration v, int n)      { return { v.value * (unsigned)n }; }
 constexpr inline Duration operator*(int      n, Duration v) { return { v.value * (unsigned)n }; }
 constexpr inline Duration operator/(Duration v, int n)      { return { v.value / (unsigned)n }; }
@@ -71,6 +73,10 @@ struct TimeSignature {
 	{}
 
 	constexpr Duration measure() const { return base * count; }
+};
+
+struct Bpm {
+	double beatsPerMinute = 120;
 };
 
 } // namespace music

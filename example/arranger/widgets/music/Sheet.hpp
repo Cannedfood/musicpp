@@ -5,16 +5,9 @@
 
 namespace music::arranger {
 
-class Sheet : public wg::Raster {
-	class SheetBar;
+class SheetView : public wg::Raster {
 public:
-	void setSheet(music::sheet::Sheet& sheet) {
-		Raster::clear();
-
-		for(sheet::Track& track : sheet.tracks) {
-			
-		}
-	}
+	sheet::Sheet sheet;
 private:
 };
 

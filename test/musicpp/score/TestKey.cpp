@@ -1,11 +1,11 @@
 #include <catch2/catch.hpp>
 
-#include <musicpp/sheet/KeySignature.hpp>
+#include <musicpp/score/KeySignature.hpp>
 
 #include <iostream>
 
 using namespace music;
-using namespace music::sheet;
+using namespace music::score;
 
 void print(KeySignature const& key) {
 	for(auto s : key.accidentals) {

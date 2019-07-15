@@ -1,4 +1,4 @@
-#include "widgets/music/Bar.hpp"
+#include "widgets/music/Measure.hpp"
 #include "widgets/music/GuitarNeck.hpp"
 
 using namespace music;
@@ -19,7 +19,7 @@ struct PrintPositions : wg::Event {
 
 int main(int argc, char const* argv[]) {
 	wg::Application app;
-	wg::Window window(app, "Hello world", 800, 600);
+	wg::Window window(app, "Hello world", 800, 600, Window::FitContent);
 
 	app.useDefaultRessources();
 
@@ -35,7 +35,7 @@ int main(int argc, char const* argv[]) {
 
 	wg::Raster list(4, 2);
 	for(size_t i = 0; i < 5; i++) {
-		list.add(*stx::make_shared<Bar>());
+		list.add(*stx::make_shared<Measure>());
 	}
 	editorLayout.add(list, 3);
 

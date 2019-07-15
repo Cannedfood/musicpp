@@ -59,7 +59,7 @@ for _, folder in ipairs(os.matchdirs "example/*") do
 	project(path.getbasename(folder))
 		kind 'WindowedApp'
 		files(path.join(folder, '**.cpp'));
-		links { 'wg', 'musicpp' }
+		links { 'wg', 'stx', 'musicpp' }
 end
 
 project 'test'

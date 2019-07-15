@@ -3,7 +3,7 @@
 #include "../Scale.hpp"
 #include "../WholeNote.hpp"
 
-namespace music::sheet {
+namespace music::score {
 
 struct KeySignature {
 	Accidental          accidental;
@@ -57,4 +57,4 @@ struct KeySignature {
 	bool operator!=(KeySignature const& other) const noexcept { return !((*this) == other); }
 };
 
-} // namespace music::sheet
+} // namespace music::score
