@@ -1,6 +1,6 @@
 #include "BarPainter.hpp"
 
-namespace music::arranger {
+namespace example::common {
 
 void BarPainter::drawStaff(wg::Canvas& canvas) noexcept {
 	for (auto& l : staff.lines) {
@@ -12,7 +12,7 @@ void BarPainter::drawStaff(wg::Canvas& canvas) noexcept {
 
 void BarPainter::drawKey(wg::Canvas& canvas) noexcept {
 	canvas.font("bold", noteHeight() * 2)
-			.fontAlign(NVG_ALIGN_LEFT, NVG_ALIGN_MIDDLE)
+			.fontAlign(wg::AlignLeft, wg::AlignMiddle)
 			.fillColor(wg::White);
 
 	auto signature = key.signature();
@@ -41,8 +41,8 @@ void BarPainter::drawNote(wg::Canvas& canvas, float x, WholeNote note) noexcept 
 
 	canvas.fillColor(wg::Black)
 			.font("bold", noteHeight() * .9f)
-			.fontAlign(NVG_ALIGN_MIDDLE, NVG_ALIGN_CENTER)
+			.fontAlign(wg::AlignCenter, wg::AlignMiddle)
 			.text(to_string(note.value), at);
 }
 
-}  // namespace music::arranger
+}  // namespace example::common

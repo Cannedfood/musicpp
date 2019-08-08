@@ -3,7 +3,7 @@
 #include <stx/xml.hpp>
 #include <stx/file2vector.hpp>
 
-namespace music::arranger {
+namespace example::common {
 
 using namespace score;
 
@@ -17,4 +17,4 @@ Track ReadMusicXML(std::istream& istream) {
 
 }
 
-} // namespace music::arranger
+} // namespace example::common

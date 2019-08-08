@@ -3,7 +3,9 @@
 #include <musicpp.hpp>
 #include <wg.hpp>
 
-namespace music::arranger {
+namespace example::common {
+
+using namespace music;
 
 struct BarPainter {
 	wg::Rect scale;
@@ -28,4 +30,4 @@ struct BarPainter {
 	float line(int line)    const noexcept { return (scale.h - (line * noteHeight() + lineOffset())); }
 };
 
-} // namespace music::arranger
+} // namespace example::common

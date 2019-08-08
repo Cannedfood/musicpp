@@ -56,10 +56,17 @@ project 'wg'
 	links { 'GL', 'glfw', 'stx' }
 
 for _, folder in ipairs(os.matchdirs "example/*") do
-	project(path.getbasename(folder))
-		kind 'WindowedApp'
+	local name = path.getbasename(folder)
+
+	project(name)
+		if name:match("lib")
+		then kind 'SharedLib'
+		else
+			kind 'WindowedApp'
+			links 'common-lib'
+		end
 		files(path.join(folder, '**.cpp'));
-		links { 'wg', 'stx', 'musicpp' }
+		links { 'wg', 'stx', 'musicpp', 'jack' }
 end
 
 project 'test'

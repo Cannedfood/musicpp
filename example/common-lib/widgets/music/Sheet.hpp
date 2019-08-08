@@ -3,7 +3,7 @@
 #include <wg/layout/Raster.hpp>
 #include <musicpp.hpp>
 
-namespace music::arranger {
+namespace example::common {
 
 class SheetView : public wg::Raster {
 public:
@@ -11,4 +11,4 @@ public:
 private:
 };
 
-} // namespace music::arranger
+} // namespace example::common

@@ -5,7 +5,7 @@
 
 #include "BarPainter.hpp"
 
-namespace music::arranger {
+namespace example::common {
 
 using namespace wg;
 
@@ -17,4 +17,4 @@ public:
 	void       paint(Canvas& canvas) noexcept override;
 };
 
-} // namespace music::arranger
+} // namespace example::common

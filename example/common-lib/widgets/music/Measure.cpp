@@ -1,6 +1,6 @@
 #include "Measure.hpp"
 
-namespace music::arranger {
+namespace example::common {
 
 Constraint Measure::measure(Canvas &canvas, Constraint const& impose) noexcept {
 	float height = preferredNoteHeight * (staff.height() + paddingLines);
@@ -19,4 +19,4 @@ void Measure::paint(Canvas& canvas) noexcept {
 	}
 }
 
-} // namespace music::arranger
+} // namespace example::common

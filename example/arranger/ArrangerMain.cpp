@@ -1,8 +1,8 @@
-#include "widgets/music/Measure.hpp"
-#include "widgets/music/GuitarNeck.hpp"
+#include "../common-lib/widgets/music/Measure.hpp"
+#include "../common-lib/widgets/music/GuitarNeck.hpp"
 
 using namespace music;
-using namespace music::arranger;
+using namespace example::common;
 
 stx::shared<Widget> toolButtons() {
 	auto result = stx::make_shared<Raster>(4, 4);

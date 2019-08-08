@@ -2,8 +2,10 @@
 
 #include <musicpp/score/Track.hpp>
 
-namespace music::arranger {
+namespace example::common {
+
+using namespace music;
 
 score::Track ReadMusicXML(std::istream&);
 
-} // namespace music::arranger
+} // namespace example::common
