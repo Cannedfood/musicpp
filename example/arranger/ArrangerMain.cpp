@@ -1,5 +1,6 @@
 #include "../common-lib/widgets/music/Measure.hpp"
 #include "../common-lib/widgets/music/GuitarNeck.hpp"
+#include "../common-lib/fileFormats/MusicXML.hpp"
 
 using namespace music;
 using namespace example::common;
@@ -18,6 +19,9 @@ struct PrintPositions : wg::Event {
 };
 
 int main(int argc, char const* argv[]) {
+	auto score = music::fileformat::ReadMusicXML("TheOstrichDelusion.xml");
+
+	/*
 	wg::Application app;
 	wg::Window window(app, "Hello world", 800, 600, Window::FitContent);
 
@@ -42,6 +46,7 @@ int main(int argc, char const* argv[]) {
 	editorLayout.add(*stx::make_shared<GuitarNeck>(), 4);
 
 	app.run();
+	*/
 
 	return 0;
 }
