@@ -7,8 +7,9 @@ namespace example::common {
 
 class SheetView : public wg::Raster {
 public:
-	sheet::Sheet sheet;
+
 private:
+	stx::shared<score::Sheet> sheet;
 };
 
 } // namespace example::common

@@ -42,9 +42,9 @@ struct GuitarNeckPainter {
 	int   stringAt      (float y)    const noexcept;
 
 	void paintNeck(Canvas& canvas,
-		Color background  = AutoColor,
-		Color stringColor = AutoColor,
-		Color fretColor   = AutoColor) const noexcept;
+		Color background,
+		Color stringColor,
+		Color fretColor) const noexcept;
 	void paintNote(Canvas& canvas,
 		int string, int fret, std::string_view text,
 		Color outlineColor, Color innerColor, Color textColor) const noexcept;

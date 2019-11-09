@@ -2,10 +2,11 @@
 
 #include <musicpp/score/Track.hpp>
 
-namespace example::common {
+#include <iosfwd>
 
-using namespace music;
+namespace music::fileformat {
 
-score::Track ReadMusicXML(std::istream&);
+score::Sheet ReadMusicXML(std::istream&);
+score::Sheet ReadMusicXML(std::string const& path);
 
-} // namespace example::common
+} // namespace music::fileformat

@@ -141,6 +141,32 @@ std::string_view to_string(NoteValue value, Accidental hint = NATURAL) noexcept 
 }
 
 constexpr inline
+NoteValue from_string(std::string_view s, Accidental alter = NATURAL) {
+	if(s == "C") return NoteValue::C   + alter;
+	if(s == "C#") return NoteValue::Cs + alter;
+	if(s == "Cb") return NoteValue::B  + alter;
+	if(s == "D") return NoteValue::D   + alter;
+	if(s == "D#") return NoteValue::Db + alter;
+	if(s == "Db") return NoteValue::Ds + alter;
+	if(s == "E") return NoteValue::E   + alter;
+	if(s == "E#") return NoteValue::F   + alter;
+	if(s == "Eb") return NoteValue::Eb   + alter;
+	if(s == "F") return NoteValue::F   + alter;
+	if(s == "F#") return NoteValue::Fs   + alter;
+	if(s == "Fb") return NoteValue::Fb   + alter;
+	if(s == "G") return NoteValue::G   + alter;
+	if(s == "G#") return NoteValue::Gs   + alter;
+	if(s == "Gb") return NoteValue::Gb   + alter;
+	if(s == "A") return NoteValue::A   + alter;
+	if(s == "A#") return NoteValue::As   + alter;
+	if(s == "Ab") return NoteValue::Ab   + alter;
+	if(s == "B") return NoteValue::B   + alter;
+	if(s == "B#") return NoteValue::C   + alter;
+	if(s == "Bb") return NoteValue::Bb   + alter;
+	throw std::runtime_error("Failed parsing NoteValue");
+}
+
+constexpr inline
 std::string_view to_string(WholeNoteValue value) noexcept {
 	switch(value) {
 		case NOTE_C: return "C";
