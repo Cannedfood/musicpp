@@ -1,11 +1,11 @@
-local git = require 'premake_git_helper.lua'
+local git = require 'premake_git_helper'
 
 git.path = 'thirdparty'
 git.repo(
 	{ name = "wg",     url = "git@github.com:Cannedfood/wg3.git", branch = "dev" },
 	{ name = "stx",    url = "https://github.com/Cannedfood/stx.git", branch = "dev" },
 	{ name = "nanovg",  url = "https://github.com/memononen/nanovg.git"    },
-	{ name = "catch2",     url = "https://github.com/catchorg/Catch2.git" },
+	{ name = "catch2",     url = "https://github.com/catchorg/Catch2.git" }
 )
 
 workspace 'Synth'
