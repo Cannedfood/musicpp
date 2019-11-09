@@ -1,5 +1,7 @@
 #include "../common-lib/widgets/music/GuitarNeck.hpp"
+#include "wg/core/types/Constraint.hpp"
 
+#include <cstdio>
 #include <stx/random.hpp>
 
 
@@ -20,6 +22,13 @@ public:
 		return GuitarNeckPainter({30, 10}, {60, 20}, tuning, 0, 12);
 	}
 
+	Constraint measure(Canvas &canvas, const Constraint &impose) noexcept override {
+		auto painter = neckPainter();
+		auto sz = painter.size();
+		printf("%g %g\n", sz.w, sz.h);
+		return Constraint::exactly(sz).clamp(impose);
+	}
+
 	void paint(Canvas &canvas) noexcept override {
 		auto painter = neckPainter();
 
@@ -36,7 +45,7 @@ public:
 int main(int argc, char const* argv[]) {
 	wg::Application app;
 
-	wg::Window window(app, "Fret Trainer", 800, 600);
+	wg::Window window(app, "Fret Trainer", 800, 600, Window::FitContent);
 
 	app.useDefaultRessources();
 
