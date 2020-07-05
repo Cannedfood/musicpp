@@ -44,11 +44,7 @@ constexpr inline Note operator+(Note n, int interval) noexcept;
 constexpr inline Note operator-(Note n, int interval) noexcept;
 constexpr inline int operator-(Note a, Note b) noexcept;
 
-inline
-std::string to_string(Note n) noexcept {
-	if(n == Note::Null()) return "No note";
-	return std::string(to_string(n.value)) + std::to_string(n.octave);
-}
+std::string to_string(Note n) noexcept;
 
 
 // =============================================================

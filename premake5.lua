@@ -2,9 +2,6 @@ local git = require 'premake_git_helper'
 
 git.path = 'thirdparty'
 git.repo(
-	{ name = "wg",     url = "git@github.com:Cannedfood/wg3.git", branch = "dev" },
-	{ name = "stx",    url = "https://github.com/Cannedfood/stx.git", branch = "dev" },
-	{ name = "nanovg",  url = "https://github.com/memononen/nanovg.git"    },
 	{ name = "catch2",     url = "https://github.com/catchorg/Catch2.git" }
 )
 
@@ -54,30 +51,6 @@ includedirs {
 project 'musicpp'
 	kind 'StaticLib'
 	files 'src/musicpp/**.cpp'
-
-project 'stx'
-	kind 'SharedLib'
-	files 'thirdparty/stx/src/**.cpp'
-	links { 'pthread', 'stdc++fs' }
-
-project 'wg'
-	kind 'SharedLib'
-	files 'thirdparty/wg3/src/**.cpp'
-	links { 'GL', 'glfw', 'stx' }
-
-for _, folder in ipairs(os.matchdirs "example/*") do
-	local name = path.getbasename(folder)
-
-	project(name)
-		if name:match("lib")
-		then kind 'SharedLib'
-		else
-			kind 'WindowedApp'
-			links 'common-lib'
-		end
-		files(path.join(folder, '**.cpp'));
-		links { 'wg', 'stx', 'musicpp', 'jack' }
-end
 
 project 'test'
 	kind 'ConsoleApp'

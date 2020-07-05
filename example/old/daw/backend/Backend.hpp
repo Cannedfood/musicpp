@@ -1,8 +1,8 @@
 #pragma once
 
 #include <cstddef>
-#include <vector>
-#include <stx/shared.hpp>
+#include <stdexcept>
+#include <memory>
 
 namespace daw::frontend { class Frontend; }
 
@@ -29,7 +29,7 @@ class Backend {
 public:
 	frontend::Frontend* Frontend = nullptr;
 
-	virtual stx::shared<Track> CreateTrack(int at) { return nullptr; }
+	virtual std::shared_ptr<Track> CreateTrack(int at) { return nullptr; }
 };
 
 } // namespace daw::backend
