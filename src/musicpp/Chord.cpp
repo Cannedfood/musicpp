@@ -38,7 +38,7 @@ std::string Chord::to_string(unsigned base) const noexcept {
 	unsigned const count = apply(notes, base);
 
 	for(unsigned i = 0; i < count; i++) {
-		result += music::to_string((NoteValue) (i % 12));
+		result += music::to_string((Chroma) (i % 12));
 		result += " ";
 	}
 

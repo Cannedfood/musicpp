@@ -10,11 +10,11 @@
 namespace music {
 
 struct Note {
-	NoteValue value;
+	Chroma value;
 	int       octave;
 
 	constexpr inline
-	Note(NoteValue val = C, int octave = 4) noexcept :
+	Note(Chroma val = C, int octave = 4) noexcept :
 		value(val),
 		octave(octave)
 	{}
@@ -57,7 +57,7 @@ constexpr inline Note::operator int() const noexcept {
 	return (octave + 1) * 12 + value;
 }
 constexpr inline Note::Note(int i) noexcept :
-	Note((NoteValue) (i % 12), (int)(i / 12u) - 1 )
+	Note((Chroma) (i % 12), (int)(i / 12u) - 1 )
 {}
 
 // ** Frequency *******************************************************

@@ -1,4 +1,4 @@
-#include <catch2/catch.hpp>
+#include <catch2.hpp>
 #include <musicpp/Rhythm.hpp>
 
 using namespace music;

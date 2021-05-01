@@ -1,7 +1,4 @@
 -DLINTER
 -std=c++2a
 -Isrc
--Ithirdparty/stx/src
--Ithirdparty/wg3/src
--Ithirdparty/nanovg/src
--Ithirdparty/catch2/single_include
+-Ithirdparty/

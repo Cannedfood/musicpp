@@ -14,7 +14,7 @@ namespace music {
 
 struct Scale : public util::StaticVector<Interval, 16> {
 	template<size_t N> constexpr
-	Scale(std::array<NoteValue, N> notes) noexcept {
+	Scale(std::array<Chroma, N> notes) noexcept {
 		resize(notes.size() - 1);
 		for(size_t i = 0; i < notes.size() - 1; i++){
 			at(i) = notes[i+1] - notes[i];
@@ -28,8 +28,8 @@ struct Scale : public util::StaticVector<Interval, 16> {
 
 	constexpr Scale rotate(int n) const noexcept { return Scale(StaticVector::rotate(n)); }
 
-	constexpr auto notes(NoteValue base) -> util::StaticVector<NoteValue, 16> {
-		util::StaticVector<NoteValue, 16> result;
+	constexpr auto notes(Chroma base) -> util::StaticVector<Chroma, 16> {
+		util::StaticVector<Chroma, 16> result;
 		result.push_back(base);
 		for(size_t i = 0; i < size() - 1; i++) {
 			base += at(i);

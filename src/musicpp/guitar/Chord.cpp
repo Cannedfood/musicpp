@@ -33,7 +33,7 @@ bool Chord::probablyPlayable(Tuning const& tuning) const noexcept {
 	return !hasImpossibleStretches(tuning); // TODO: impossible barres, impossible mutes (0X0X00)
 }
 
-bool Chord::incrementString(Tuning const& tuning, NoteValue baseNote, music::Chord const& notes, int string, unsigned bars) noexcept {
+bool Chord::incrementString(Tuning const& tuning, Chroma baseNote, music::Chord const& notes, int string, unsigned bars) noexcept {
 	for(;;) {
 		if(at(string) == Note::Null()) {
 			at(string) = tuning.at(string);
@@ -53,7 +53,7 @@ bool Chord::incrementString(Tuning const& tuning, NoteValue baseNote, music::Cho
 	}
 }
 
-bool Chord::containsAll(Tuning const& tuning, NoteValue baseNote, std::bitset<12> notes) noexcept {
+bool Chord::containsAll(Tuning const& tuning, Chroma baseNote, std::bitset<12> notes) noexcept {
 	for(auto& note : *this) {
 		if(note != Note::Null()) {
 			notes.reset((note - baseNote).value);
@@ -85,7 +85,7 @@ std::pair<int, int> Chord::range(Tuning const& tuning) const noexcept {
 	return {min,max};
 }
 
-bool Chord::nextChord(Tuning const& tuning, NoteValue baseNote, music::Chord const& notes, unsigned bars) noexcept {
+bool Chord::nextChord(Tuning const& tuning, Chroma baseNote, music::Chord const& notes, unsigned bars) noexcept {
 	resize(tuning.size());
 
 	for(size_t i = 0; i < size(); i++) {

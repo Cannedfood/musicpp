@@ -14,7 +14,7 @@ enum Accidental : int8_t {
 	SHARP   = 1,
 };
 
-enum NoteValue : int8_t {
+enum Chroma : int8_t {
 	C = 0,
 	Cs = 1,
 	D = 2,   Db = Cs,
@@ -37,56 +37,13 @@ namespace detail {
 	}
 }
 
-constexpr inline NoteValue operator+ (NoteValue  v, int interval) noexcept { return NoteValue(detail::negativeModulo(int(v) + interval, 12)); }
-constexpr inline NoteValue operator- (NoteValue  v, int interval) noexcept { return NoteValue(detail::negativeModulo(int(v) - interval, 12)); }
-constexpr inline NoteValue operator+=(NoteValue& v, int interval) noexcept { return v = v + interval; }
-constexpr inline NoteValue operator-=(NoteValue& v, int interval) noexcept { return v = v - interval; }
-
-enum WholeNoteValue : int8_t {
-	NOTE_C = 0,
-	NOTE_D = 1,
-	NOTE_E = 2,
-	NOTE_F = 3,
-	NOTE_G = 4,
-	NOTE_A = 5,
-	NOTE_B = 6,
-};
-
-constexpr std::array<WholeNoteValue, 7> WholeNoteValues() noexcept { return {NOTE_C, NOTE_D, NOTE_E, NOTE_F, NOTE_G, NOTE_A, NOTE_B}; }
+constexpr inline Chroma operator+ (Chroma  v, int interval) noexcept { return Chroma(detail::negativeModulo(int(v) + interval, 12)); }
+constexpr inline Chroma operator- (Chroma  v, int interval) noexcept { return Chroma(detail::negativeModulo(int(v) - interval, 12)); }
+constexpr inline Chroma operator+=(Chroma& v, int interval) noexcept { return v = v + interval; }
+constexpr inline Chroma operator-=(Chroma& v, int interval) noexcept { return v = v - interval; }
 
 constexpr inline
-NoteValue chromatic(WholeNoteValue note, Accidental accidental = NATURAL) noexcept {
-	switch(note) {
-		case NOTE_C: return C + accidental;
-		case NOTE_D: return D + accidental;
-		case NOTE_E: return E + accidental;
-		case NOTE_F: return F + accidental;
-		case NOTE_G: return G + accidental;
-		case NOTE_A: return A + accidental;
-		case NOTE_B: return B + accidental;
-	}
-}
-
-constexpr inline
-WholeNoteValue whole(NoteValue note, Accidental interpretAs = NATURAL) noexcept {
-	switch(note) {
-	case C:  return (interpretAs == SHARP)? NOTE_B : NOTE_C;
-	case Cs: return (interpretAs == SHARP)? NOTE_C : NOTE_D;
-	case D:  return NOTE_D;
-	case Ds: return (interpretAs == SHARP)? NOTE_D : NOTE_E;
-	case E:  return (interpretAs == FLAT)?  NOTE_F : NOTE_E;
-	case F:  return (interpretAs == SHARP)? NOTE_E : NOTE_F;
-	case Fs: return (interpretAs == SHARP)? NOTE_F : NOTE_G;
-	case G:  return NOTE_G;
-	case Gs: return (interpretAs == SHARP)? NOTE_G : NOTE_A;
-	case A:  return NOTE_A;
-	case As: return (interpretAs == SHARP)? NOTE_A : NOTE_B;
-	case B:  return (interpretAs == FLAT)?  NOTE_C : NOTE_B;
-	}
-}
-
-constexpr inline
-bool is_whole(NoteValue note) {
+bool not_sharp_or_flat(Chroma note) {
 	switch(note){
 		case A: case B: case C: case D: case E: case F: case G:
 			return true;
@@ -120,10 +77,10 @@ enum Interval : int {
 	dim12th  = 18,
 	pref12th = 19,
 };
-constexpr inline Interval operator- (NoteValue a, NoteValue b)   noexcept { return Interval(detail::negativeModulo(int(a) - int(b), 12)); }
+constexpr inline Interval operator- (Chroma a, Chroma b)   noexcept { return Interval(detail::negativeModulo(int(a) - int(b), 12)); }
 
 constexpr inline
-std::string_view to_string(NoteValue value, Accidental hint = NATURAL) noexcept {
+std::string_view to_string(Chroma value, Accidental hint = NATURAL) noexcept {
 	if(hint == NATURAL) hint = SHARP;
 	switch(value) {
 		case C:  return "C";
@@ -142,42 +99,29 @@ std::string_view to_string(NoteValue value, Accidental hint = NATURAL) noexcept 
 }
 
 constexpr inline
-NoteValue from_string(std::string_view s, Accidental alter = NATURAL) {
-	if(s == "C") return NoteValue::C   + alter;
-	if(s == "C#") return NoteValue::Cs + alter;
-	if(s == "Cb") return NoteValue::B  + alter;
-	if(s == "D") return NoteValue::D   + alter;
-	if(s == "D#") return NoteValue::Db + alter;
-	if(s == "Db") return NoteValue::Ds + alter;
-	if(s == "E") return NoteValue::E   + alter;
-	if(s == "E#") return NoteValue::F   + alter;
-	if(s == "Eb") return NoteValue::Eb   + alter;
-	if(s == "F") return NoteValue::F   + alter;
-	if(s == "F#") return NoteValue::Fs   + alter;
-	if(s == "Fb") return NoteValue::Fb   + alter;
-	if(s == "G") return NoteValue::G   + alter;
-	if(s == "G#") return NoteValue::Gs   + alter;
-	if(s == "Gb") return NoteValue::Gb   + alter;
-	if(s == "A") return NoteValue::A   + alter;
-	if(s == "A#") return NoteValue::As   + alter;
-	if(s == "Ab") return NoteValue::Ab   + alter;
-	if(s == "B") return NoteValue::B   + alter;
-	if(s == "B#") return NoteValue::C   + alter;
-	if(s == "Bb") return NoteValue::Bb   + alter;
-	throw std::runtime_error("Failed parsing NoteValue");
-}
-
-constexpr inline
-std::string_view to_string(WholeNoteValue value) noexcept {
-	switch(value) {
-		case NOTE_C: return "C";
-		case NOTE_D: return "D";
-		case NOTE_E: return "E";
-		case NOTE_F: return "F";
-		case NOTE_G: return "G";
-		case NOTE_A: return "A";
-		case NOTE_B: return "B";
-	}
+Chroma from_string(std::string_view s, Accidental alter = NATURAL) {
+	if(s == "C") return Chroma::C   + alter;
+	if(s == "C#") return Chroma::Cs + alter;
+	if(s == "Cb") return Chroma::B  + alter;
+	if(s == "D") return Chroma::D   + alter;
+	if(s == "D#") return Chroma::Db + alter;
+	if(s == "Db") return Chroma::Ds + alter;
+	if(s == "E") return Chroma::E   + alter;
+	if(s == "E#") return Chroma::F   + alter;
+	if(s == "Eb") return Chroma::Eb   + alter;
+	if(s == "F") return Chroma::F   + alter;
+	if(s == "F#") return Chroma::Fs   + alter;
+	if(s == "Fb") return Chroma::Fb   + alter;
+	if(s == "G") return Chroma::G   + alter;
+	if(s == "G#") return Chroma::Gs   + alter;
+	if(s == "Gb") return Chroma::Gb   + alter;
+	if(s == "A") return Chroma::A   + alter;
+	if(s == "A#") return Chroma::As   + alter;
+	if(s == "Ab") return Chroma::Ab   + alter;
+	if(s == "B") return Chroma::B   + alter;
+	if(s == "B#") return Chroma::C   + alter;
+	if(s == "Bb") return Chroma::Bb   + alter;
+	throw std::runtime_error("Failed parsing Chroma");
 }
 
 constexpr inline
