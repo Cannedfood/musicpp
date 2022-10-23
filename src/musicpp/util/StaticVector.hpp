@@ -3,11 +3,13 @@
 #include <cstdlib>
 #include <array>
 #include <algorithm>
+#include <stdexcept>
 
 namespace music::util {
 
 template<class T, size_t Capacity>
 class StaticVector : public std::array<T, Capacity> {
+	using Base = std::array<T, Capacity>;
 public:
 	static_assert(std::is_trivially_destructible_v<T>, "T has to be trivially destructable");
 
@@ -20,6 +22,16 @@ public:
 	}
 	constexpr StaticVector(std::initializer_list<T> args) noexcept {
 		push_back(args.begin(), args.end());
+	}
+
+	template<size_t Size>
+	constexpr operator std::array<T, Size>() {
+		static_assert(Size <= Capacity, "Size must be less than or equal to Capacity");
+		if(size() != Size)
+			throw std::range_error("Size must be equal to Capacity");
+		std::array<T, Size> result;
+		std::copy(Base::begin(), Base::begin() + Size, result.begin());
+		return result;
 	}
 
 	constexpr T& push_back (T t) noexcept { return this->at(m_size++) = std::move(t); }

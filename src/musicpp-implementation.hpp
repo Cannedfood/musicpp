@@ -2,5 +2,3 @@
 #include "musicpp/Note.cpp"
 #include "musicpp/Rhythm.cpp"
 #include "musicpp/analysis/Analysis.cpp"
-#include "musicpp/guitar/Chord.cpp"
-#include "musicpp/Chord.cpp"

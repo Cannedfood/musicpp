@@ -3,7 +3,7 @@
 #pragma once
 
 #include "Enums.hpp"
-#include "Note.hpp"
+#include "Pitch.hpp"
 #include "util/StaticVector.hpp"
 
 #include <array>
@@ -38,8 +38,8 @@ struct Scale : public util::StaticVector<Interval, 16> {
 		return result;
 	}
 
-	constexpr auto notes(Note base) -> util::StaticVector<Note, 16> {
-		util::StaticVector<Note, 16> result;
+	constexpr auto notes(Pitch base) -> util::StaticVector<Pitch, 16> {
+		util::StaticVector<Pitch, 16> result;
 		result.push_back(base);
 		for(size_t i = 0; i < size() - 1; i++) {
 			base += at(i);

@@ -22,7 +22,9 @@ constexpr inline Duration operator*(double d,   Duration v);
 constexpr inline Duration operator/(Duration v, double d);
 
 struct Duration {
-	uint32_t value;
+	using base = std::uint32_t;
+
+	base value;
 
 	constexpr static Duration whole()        { return sixtyfourth() * 64u; }
 	constexpr static Duration half()         { return sixtyfourth() * 32u; }
@@ -30,12 +32,11 @@ struct Duration {
 	constexpr static Duration eighth()       { return sixtyfourth() * 8u; }
 	constexpr static Duration sixteenth()    { return sixtyfourth() * 4u; }
 	constexpr static Duration thirtysecond() { return sixtyfourth() * 2u; }
-	constexpr static Duration sixtyfourth()  { return {3 * 5 * 7 * 11 * 13 * 17}; }
+	constexpr static Duration sixtyfourth()  { return {3 * 3 * 3 * 5 * 7 * 11}; }
 
-	constexpr Duration tuplet(unsigned n) const { return {value / n}; }
-	constexpr Duration triplets()         const { return tuplet(3); }
-	constexpr Duration quintuplets()      const { return tuplet(5); }
-	constexpr Duration septuplets()       const { return tuplet(7); }
+	constexpr Duration triplets()         const { return *this * 2 / 3; }
+	constexpr Duration quintuplets()      const { return *this * 4 / 5; }
+	constexpr Duration septuplets()       const { return *this * 4 / 7; }
 
 	constexpr double in_beats() const { return value / (double) quarter().value; }
 

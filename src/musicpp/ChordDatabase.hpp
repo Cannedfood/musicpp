@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "../Chord.hpp"
+#include "./IntervalSet.hpp"
 
 #include <unordered_map>
 #include <string_view>
@@ -10,37 +10,20 @@
 namespace music {
 
 /// Saves data about chords, there are too many to stick them into an enum.
-class ChordDb {
+class ChordDatabase {
 	struct Entry {
 		std::string_view name;
 		std::string_view shortName;
 		unsigned         root;
 		unsigned         inversion;
-
-		Entry(
-			std::string_view name,
-			std::string_view shortName,
-			unsigned root = 0,
-			unsigned inversion = 0)
-		: name(name), shortName(shortName), root(root), inversion(inversion)
-		{}
-
-		Entry() :
-			name()
-		{}
-
-		operator bool() const noexcept {
-			return !name.empty();
-		}
+		IntervalSet		 intervals;
 	};
-	std::unordered_map<Chord, Entry> mEntries;
-	Entry                            mNullEntry;
 public:
-	ChordDb(bool autoInit = true);
-	void registerChord(std::string_view name, std::string_view shortName, Chord chord);
-	void generateInversions(Chord chord);
+	std::vector<Entry> entries;
 
-	Entry const& get(Chord const& chord) const noexcept;
+	ChordDatabase(bool autoInit = true);
+
+	void add(std::string name, std::string shortname, IntervalSet intervals) noexcept;
 };
 
 } // namespace music
